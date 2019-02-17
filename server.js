@@ -80,6 +80,7 @@ function GetRequestBody(req) {
   })
 }
 
+/**route test */
 new route('/info', 'POST', async (req, res) => {
   const info = await GetRequestBody(req)
   const info_obj = qs.parse(info)
