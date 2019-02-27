@@ -45,14 +45,14 @@ class route {
 }
 
 function HandleStatic(staticPath, req, res) {
-  let urlObj = new URL(req.url, 'http://localhost:8888/')
+  let urlObj = new URL(req.url, 'http://localhost/')
   if (urlObj.pathname === '/') {
     urlObj.pathname += 'index.html';
   }
   let filePath = path.join(staticPath, urlObj.pathname)
   fs.readFile(filePath, 'binary', (err, data) => {
     if (err) {
-      HandleError(req, res)
+      HandleError(res)
     } else {
       // res.setHeader('Content-Type', 'text/html')
       res.writeHead(200, 'OK')
@@ -62,7 +62,7 @@ function HandleStatic(staticPath, req, res) {
   })
 }
 
-function HandleError(req, res) {
+function HandleError(res) {
   res.writeHead(404, 'Not Found!', { "Content-Type": "text/html;charset=utf-8" })
   res.write('<h1>404 Not Found!</h1><font>您要找的页面找不到了&gt_&lt! </font>')
   res.end()
